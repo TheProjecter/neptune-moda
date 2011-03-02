@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+  Copyright (c) 2010, University of Victoria
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+  
+  1. Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  3. All advertising materials mentioning features or use of this software
+     must display the following acknowledgement:
+     
+     This product includes software developed by the University of Victoria.
+  
+  4. Neither the name of the University of Victoria nor the
+     names of its contributors may be used to endorse or promote products
+     derived from this software without specific prior written permission.
+     
+  THIS SOFTWARE IS PROVIDED BY THE University of Victoria ''AS IS'' AND ANY
+  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE University of Victoria BE LIABLE FOR ANY
+  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ -->
+ 
+<resources>
+	<!-- Define all the web service URL here. -->
+	<string name="last_reading_service">http://dmas.uvic.ca/LastReading</string>	
+	<string name="plot_service">http://dmas.uvic.ca/Plot?sensorId=%1$s&amp;plotwidth=%2$d&amp;plotheight=%3$d&amp;plottype=on&amp;plottitle=on&amp;datefrom=%4$tY-%4$tm-%4$td%%20%4$tH:%4$tM:%4$tS&amp;dateto=%5$tY-%5$tm-%5$td%%20%5$tH:%5$tM:%5$tS</string>
+	<string name="youtube_service">http://gdata.youtube.com/feeds/mobile/videos/-/mobile?&amp;author=neptunecanada&amp;format=6&amp;alt=json&amp;orderby=published</string>
+</resources>

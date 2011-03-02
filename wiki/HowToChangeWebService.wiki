@@ -6,7 +6,7 @@ In this Wiki, we will focus more about how to change the Web Service calls in NE
  
 All web services that are being called are saved in "services.xml" resource file:
  
-<p><NEPTUNE Project>/res/values/services.xml
+<p>_<NEPTUNE Project>/res/values/services.xml_
  
 <p>The services that NEPTUNE is calling are:
 <p>

@@ -154,7 +154,7 @@ All web services that are being called are saved in "services.xml" resource file
    * plotheight = Height of the screen size
    * datefrom = Date and time (yyyy-mm-dd hh:mm:ss) the graph to plot from
    * dateto = Date and time (yyyy-mm-dd hh:mm:ss) the graph to plot until
-  * *Return* : A graph image in PNG format with the width and height defined in the request.
+  * *Return* : A graph image in PNG format with the width and height defined in the request.<br/>
  # YouTube API
   * *Resource ID* : youtube_service
   * *Service Call* : http://gdata.youtube.com/feeds/mobile/videos/-/mobile?&author=neptunecanada&format=6&alt=json&orderby=published

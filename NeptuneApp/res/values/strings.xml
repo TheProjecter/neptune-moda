@@ -131,7 +131,7 @@
     <string name="msg_refreshing">Refreshing. This may take a moment. Please wait...</string>
     
     <!--  Disclaimers and Larger text blocks -->
-    <string name="msg_disclaimer_sensor">Not all readings are current; data show here are latest available, but may be out of date if the instrument is offline or out of operation. In this case, please refer to \'Previous Locations\' for  information regarding where data readings last occurred.</string>
+    <string name="msg_disclaimer_sensor">Not all readings are current; data shown here are latest available, but may be out of date if the instrument is offline or out of operation. In this case, please refer to \'Previous Locations\' for  information regarding where data readings last occurred.</string>
 	<string name="msg_disclaimer_video">Note: If the image is black, then the camera lights are not on. The cameras are in an environment without natural light, so the lights are on only for limited times to minimize impacts on the sensitive sea floor ecosystems.</string>	
 	<string name="msg_start_end_dates">Start dates must occur before end dates.</string>
 	<string name="msg_google_disclaimer">Note: This application uses Google Analytics, and will send anonymous useage data to help developers make this program better. Data contains no personal information and is sent only during regular internet usage.</string>	

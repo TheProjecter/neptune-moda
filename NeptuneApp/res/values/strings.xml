@@ -136,6 +136,7 @@
 	<string name="msg_start_end_dates">Start dates must occur before end dates.</string>
 	<string name="msg_google_disclaimer">Note: This application uses Google Analytics, and will send anonymous useage data to help developers make this program better. Data contains no personal information and is sent only during regular internet usage.</string>	
 	<string name="msg_neptube_about_with_link">&lt;a href=\'http://www.neptunecanada.ca\'&gt;NEPTUNE Canada &lt;/a&gt; is an 800km long cabled seafloor observatory off the west coast of Vancouver Island, British Columbia. The network extends across the Juan de Fuca plate and gathers live data from a diverse collection of instruments deployed in the ocean.</string>
+	<string name="msg_map_note">(Click to enlarge)</string>
 
 	<!--  Timestamp format -->
 	<string name="format_iso8601_timestamp">yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'</string>

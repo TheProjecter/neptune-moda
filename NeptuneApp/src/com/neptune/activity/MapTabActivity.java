@@ -34,9 +34,13 @@
 package com.neptune.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
@@ -63,6 +67,17 @@ public class MapTabActivity extends Activity {
 		
 		//Setup for Google Analytics
 		tracker = GoogleAnalyticsTracker.getInstance();
+		
+		ImageView mapView = (ImageView) findViewById(R.id.map_id);
+		mapView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(MapTabActivity.this,	MapViewActivity.class);
+				MapTabActivity.this.startActivity(i);
+			}
+			
+		});
 		
 		//Setup text with URL links
 		TextView text = (TextView) findViewById(R.id.map_text);

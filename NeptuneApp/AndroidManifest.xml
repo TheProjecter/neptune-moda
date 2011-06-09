@@ -56,7 +56,11 @@
         <activity android:name=".activity.DevicesTabActivity">
         </activity>
         
-        <activity android:name=".activity.MapTabActivity">
+        <activity android:name=".activity.MapTabActivity"
+				 android:configChanges="orientation">
+        </activity>
+        
+         <activity android:name=".activity.MapViewActivity">
         </activity>
         
         <activity android:name=".activity.MediaTabActivity"

@@ -40,19 +40,19 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.neptune.R;
-import com.neptune.manager.HttpConnectionManager;
 
 /**
  * Activity to display graph image fetched from DMAS plotting service 
@@ -74,10 +74,11 @@ public class GraphActivity extends Activity {
 	private int imageWidth = 500;					//default height/width of nexus one
 	private int imageHeight = 300;
 	
-	private ImageView mImageView;
+	private WebView mWebView;
 	private TextView mTextView;
 	private TextView nodata;
 	private Display display;
+	private String url;
 	
 	/**
 	 * Constructing the graph view by getting the size (width & height) of the display and 
@@ -92,7 +93,13 @@ public class GraphActivity extends Activity {
 		// Setup Google Analystics Tracker
 		tracker = GoogleAnalyticsTracker.getInstance();
 		
-		mImageView = (ImageView) findViewById(R.id.graph_container);
+		mWebView = (WebView) findViewById(R.id.graph_container);
+		mWebView.setInitialScale(100);
+		mWebView.setWebViewClient(new PinchZoomableGraphViewClient(this));
+		WebSettings settings = mWebView.getSettings();
+		settings.setBuiltInZoomControls(true);
+		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		
 		mTextView = (TextView) findViewById(R.id.backup_text);
 		nodata = (TextView) findViewById(R.id.nodata);	
 		
@@ -107,11 +114,9 @@ public class GraphActivity extends Activity {
 		imageWidth = display.getWidth();  
 		imageHeight = display.getHeight();  
 						
-		String url = String.format(this.getString(R.string.plot_service), sensorId, imageWidth, imageHeight, startDate, endDate);
+		url = String.format(this.getString(R.string.plot_service), sensorId, imageWidth, imageHeight, startDate, endDate);
 		
 		Log.d(TAG, "Calling service: " + url);
-
-		new AsyncGraphs(this).execute(url);
 	}
 
 	/**
@@ -121,6 +126,50 @@ public class GraphActivity extends Activity {
 	public void onStart(){
 		super.onStart();
 		tracker.trackPageView(PAGE);
+	}
+	
+	public void onResume() {
+		super.onResume();
+		mWebView.loadUrl(url);
+	}
+	
+	private class PinchZoomableGraphViewClient extends WebViewClient {		
+		private ProgressDialog dialog;
+		private Context mContext;
+		
+		public PinchZoomableGraphViewClient(Context mContext) {
+			this.mContext = mContext;
+		}
+		
+		@Override
+		public void onPageStarted(WebView view, String url, Bitmap favicon) {
+			int orientation = display.getOrientation();
+			if(orientation == Surface.ROTATION_0){
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			} else {
+				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			}
+			//launch 'loading' dialog
+			dialog = new ProgressDialog(mContext, ProgressDialog.STYLE_SPINNER);
+			dialog.setIndeterminate(true);
+			dialog.setTitle(mContext.getString(R.string.label_fetch_graph));
+			//dialog.setCancelable(false);					//pressing back would cancel the dialog, NOT the task
+			dialog.show();
+		}
+		
+		@Override
+		public void onPageFinished(WebView view, String url) {
+			dialog.dismiss();
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+			nodata.setVisibility(View.GONE);  					//remove the 'no data' text
+		}
+		
+		@Override
+		public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+			dialog.dismiss();
+			mTextView.setText(R.string.msg_get_graph_fail);
+			mTextView.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	/**
@@ -134,72 +183,72 @@ public class GraphActivity extends Activity {
 	 * Because we are modifying UI elements (mTextView, nodata) from another thread, 
 	 * this class needs to be in the GraphActivity class.
 	 */
-	private class AsyncGraphs extends AsyncTask<String, Void, Bitmap>{
-
-		private Context mContext;
-		private ProgressDialog dialog;
-		
-		public AsyncGraphs(Context context){
-			super();
-			mContext = context;
-		}
-		
-		/**
-		 * Prevent the orientation changes when fetching the graph.
-		 * 
-		 * Display the fetching dialog box.
-		 */
-		protected void onPreExecute(){
-			//Temporarily prevent orientation changes while fetching the graph
-			int orientation = display.getOrientation();
-			if(orientation == Surface.ROTATION_0){
-				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-			} else {
-				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-			}
-			//launch 'loading' dialog
-			dialog = new ProgressDialog(mContext, ProgressDialog.STYLE_SPINNER);
-			dialog.setIndeterminate(true);
-			dialog.setTitle(mContext.getString(R.string.label_fetch_graph));
-			//dialog.setCancelable(false);					//pressing back would cancel the dialog, NOT the task
-			dialog.show();									
-		}
-		
-		/**
-		 * Getting the image of the graph by calling the web service through HttpConnectionManager.
-		 */
-		protected Bitmap doInBackground(String... url) {
-			Bitmap graph = null;
-			try{
-				graph = HttpConnectionManager.getBitmap((String)url[0]);
-			}catch(Exception ex){
-				Log.e(TAG, "Failed asynchronous fetch of graph");
-				Log.e(TAG, "Exception: " + ex);
-				ex.printStackTrace();
-				mTextView.setText(R.string.msg_get_graph_fail);
-				mTextView.setVisibility(View.VISIBLE);
-			}
-			return graph;
-		}
-		
-		/**
-		 * Dismiss the progress dialog box, release the lock for orientation changes and
-		 * display the graph image after calling the web service.
-		 * 
-		 * If graph image is not available, display a failure dialog box.
-		 */
-		protected void onPostExecute(Bitmap b){
-			dialog.dismiss();
-			//no longer in danger with orientation changes, release lock
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);	
-			nodata.setVisibility(View.GONE);  					//remove the 'no data' text
-			if(b != null){
-				mImageView.setImageBitmap(b);
-			}else{
-				mTextView.setText(R.string.msg_get_graph_fail);
-				mTextView.setVisibility(View.VISIBLE);
-			}
-		}
-		
-	}
+//	private class AsyncGraphs extends AsyncTask<String, Void, Bitmap>{
+//
+//		private Context mContext;
+//		private ProgressDialog dialog;
+//		
+//		public AsyncGraphs(Context context){
+//			super();
+//			mContext = context;
+//		}
+//		
+//		/**
+//		 * Prevent the orientation changes when fetching the graph.
+//		 * 
+//		 * Display the fetching dialog box.
+//		 */
+//		protected void onPreExecute(){
+//			//Temporarily prevent orientation changes while fetching the graph
+//			int orientation = display.getOrientation();
+//			if(orientation == Surface.ROTATION_0){
+//				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//			} else {
+//				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//			}
+//			//launch 'loading' dialog
+//			dialog = new ProgressDialog(mContext, ProgressDialog.STYLE_SPINNER);
+//			dialog.setIndeterminate(true);
+//			dialog.setTitle(mContext.getString(R.string.label_fetch_graph));
+//			//dialog.setCancelable(false);					//pressing back would cancel the dialog, NOT the task
+//			dialog.show();									
+//		}
+//		
+//		/**
+//		 * Getting the image of the graph by calling the web service through HttpConnectionManager.
+//		 */
+//		protected Bitmap doInBackground(String... url) {
+//			Bitmap graph = null;
+//			try{
+//				graph = HttpConnectionManager.getBitmap((String)url[0]);
+//			}catch(Exception ex){
+//				Log.e(TAG, "Failed asynchronous fetch of graph");
+//				Log.e(TAG, "Exception: " + ex);
+//				ex.printStackTrace();
+//				mTextView.setText(R.string.msg_get_graph_fail);
+//				mTextView.setVisibility(View.VISIBLE);
+//			}
+//			return graph;
+//		}
+//		
+//		/**
+//		 * Dismiss the progress dialog box, release the lock for orientation changes and
+//		 * display the graph image after calling the web service.
+//		 * 
+//		 * If graph image is not available, display a failure dialog box.
+//		 */
+//		protected void onPostExecute(Bitmap b){
+//			dialog.dismiss();
+//			//no longer in danger with orientation changes, release lock
+//			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);	
+//			nodata.setVisibility(View.GONE);  					//remove the 'no data' text
+//			if(b != null){
+//				mImageView.setImageBitmap(b);
+//			}else{
+//				mTextView.setText(R.string.msg_get_graph_fail);
+//				mTextView.setVisibility(View.VISIBLE);
+//			}
+//		}
+//		
+//	}
 }

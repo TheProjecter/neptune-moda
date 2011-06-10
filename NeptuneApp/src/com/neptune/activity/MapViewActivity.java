@@ -28,6 +28,8 @@ public class MapViewActivity extends Activity {
 		tracker = GoogleAnalyticsTracker.getInstance();
 		
 		mWebView = (WebView) findViewById(R.id.map_view_id);
+		mWebView.setBackgroundColor(Color.BLACK);
+		mWebView.setInitialScale(100);
 		WebSettings settings = mWebView.getSettings();
 		settings.setBuiltInZoomControls(true);
 		settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -45,8 +47,6 @@ public class MapViewActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
-		mWebView.setBackgroundColor(Color.BLACK);
 		mWebView.loadUrl(MAP_PATH);
 	}
 }

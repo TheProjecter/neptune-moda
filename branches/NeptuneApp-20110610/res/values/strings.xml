@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+  Copyright (c) 2010, University of Victoria
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+  
+  1. Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  3. All advertising materials mentioning features or use of this software
+     must display the following acknowledgement:
+     
+     This product includes software developed by the University of Victoria.
+  
+  4. Neither the name of the University of Victoria nor the
+     names of its contributors may be used to endorse or promote products
+     derived from this software without specific prior written permission.
+     
+  THIS SOFTWARE IS PROVIDED BY THE University of Victoria ''AS IS'' AND ANY
+  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL THE University of Victoria BE LIABLE FOR ANY
+  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ -->
+ 
+<resources>
+    <string name="app_name">NEPTUNE</string>
+    <string name="google_analytics_id">UA-3270783-4</string>
+    
+    <!--  Button Labels -->
+    <string name="btn_remove_from_fav">Remove from Favourites</string>
+    <string name="btn_add_to_fav">Add to Favourites</string>
+    <string name="btn_toggle_on">Favourite Devices</string>
+    <string name="btn_toggle_off">Favourite Devices</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_start">Start</string>
+    <string name="btn_end">End</string>
+    <string name="btn_graph">Graph</string>
+    <string name="btn_choose_start_date">Choose Start Date</string>
+    <string name="btn_choose_start_time">Choose Start Time</string>
+    <string name="btn_choose_end_date">Choose End Date</string>
+    <string name="btn_choose_end_time">Choose End Time</string>
+    <string name="btn_play_video">Play Streaming Video</string>
+    <string name="btn_previous_locations">Previous Locations</string>
+            
+    <!--  Menu Labels -->
+    <string name="menu_refresh_all">Refresh All Devices</string>
+    <string name="menu_about">Info</string>
+    
+    <!-- Dialog items -->
+    <string-array name="labels_graph_picker_times">
+    	<item>Last 10 Minutes</item>
+    	<item>Last Hour</item>
+    	<item>Last Day</item>
+    	<item>Last Week</item>
+    	<item>Other...</item>
+    </string-array>
+    
+    <!--  Tab Labels -->
+    <string name="tab_map">Map</string>
+    <string name="tab_devices">Devices</string>
+    <string name="tab_media">Media</string>
+    
+    <!--  Generic Labels -->
+    <string name="label_location">Current Location:</string>
+    <string name="label_lat">Latitude:</string>
+    <string name="label_long">Longitude:</string>
+    <string name="label_depth">Depth:</string>
+    <string name="label_last_updated">Last Updated:</string>
+    <string name="label_install_date">Install Date:</string>
+    <string name="label_id">ID:</string>
+    <string name="label_greater_than_symbol">></string>
+    
+    <string name="msg_last_updated_minute">%1$s UTC \n (about %2$s minute ago)</string>
+    <string name="msg_last_updated_minutes">%1$s UTC \n (about %2$s minutes ago)</string>
+    <string name="msg_last_updated_hour">%1$s UTC \n (about %2$s hour ago)</string>
+    <string name="msg_last_updated_hours">%1$s UTC \n (about %2$s hours ago)</string>
+    <string name="msg_last_updated_days">%1$s UTC \n (about %2$s days ago)</string>
+    <string name="msg_mbsl_full">%1$s meters below sea level (mbsl)</string>
+    <string name="msg_mbsl_abbrev">mbsl</string>
+    <string name="msg_video">(video)</string>
+    <string name="msg_no_time">No time to display.</string>
+    
+    
+    <string name="msg_neptube_youtube">NEPTUNE Canada YouTube Feed</string>
+    <string name="msg_neptube_youtube_url">http://www.youtube.com/user/neptunecanada</string>
+    <string name="msg_picked_start_date_time">Start: %1$tm-%1$td-%1$tY\t\t%1$tH:%1$tM</string>    
+    <string name="msg_picked_end_date_time">End: %1$tm-%1$td-%1$tY\t\t%1$tH:%1$tM</string>
+    
+    <!-- About Labels -->
+    <string name="label_full_name">NEPTUNE Canada</string>
+    <string name="label_tagline">Transforming Ocean Science</string>
+    <string name="label_website">Website</string>
+    <string name="label_lead_programmer">Lead Programmer</string>
+    <string name="label_team">Mobile Development Team</string>
+    <string name="label_acknowledgement">Special Thanks To:</string>
+    <string name="msg_about_neptube">NEPTUNE Canada is a project of Ocean Networks Canada, a University of Victoria initiative</string>
+    <string name="msg_neptube_url">http://www.neptunecanada.ca</string>
+    <string name="msg_acknowledgement_1">Everyone at NEPTUNE Canada</string>
+    <string name="msg_acknowledgement_2">Especially Kalpana Rawat and Tim Boesenkool</string>
+    <string name="msg_acknowledgement_3">Mark James</string>
+    <string name="msg_acknowledgement_4">For the Silk icon set from FamFamFam"</string>
+    <string name="msg_famfamfam_url">http://www.famfamfam.com</string>
+    
+    <!-- Team members -->
+    <string name="team_member_name_1">Benoît Pirenne</string>
+    <string name="team_member_name_2">Jeff Proctor</string>
+    <string name="team_member_name_3">Ron Schouten</string>
+    <string name="team_member_name_4">Aurora Walker</string>
+    
+    <!--  headers, alerts and toast -->
+    <string name="label_graph_picker">Select a time period to graph</string>
+    <string name="label_fetch_graph">Fetching Graph...</string>
+    <string name="label_fetching">Fetching...</string>
+    <string name="label_internet_fail">Connection Failed</string>
+    
+    <string name="msg_no_network_connection">Unable to retrieve data. Server unavailable or network connection is down. Please check your network connection and try again later.</string>
+    <string name="msg_refresh_fail">Refresh Failed</string>
+    <string name="msg_refresh_success">Refresh Successful</string>
+    <string name="msg_get_graph_fail">Unable to Retrieve Graph</string>    
+    <string name="msg_no_data">No data to display.</string>
+    <string name="msg_refreshing">Refreshing. This may take a moment. Please wait...</string>
+    
+    <!--  Disclaimers and Larger text blocks -->
+    <string name="msg_disclaimer_sensor">Not all readings are current; data shown here are latest available, but may be out of date if the instrument is offline or out of operation. In this case, please refer to \'Previous Locations\' for  information regarding where data readings last occurred.</string>
+	<string name="msg_disclaimer_video">Note: If the image is black, then the camera lights are not on. The cameras are in an environment without natural light, so the lights are on only for limited times to minimize impacts on the sensitive sea floor ecosystems.</string>	
+	<string name="msg_start_end_dates">Start dates must occur before end dates.</string>
+	<string name="msg_google_disclaimer">Note: This application uses Google Analytics, and will send anonymous useage data to help developers make this program better. Data contains no personal information and is sent only during regular internet usage.</string>	
+	<string name="msg_neptube_about_with_link">&lt;a href=\'http://www.neptunecanada.ca\'&gt;NEPTUNE Canada &lt;/a&gt; is an 800km long cabled seafloor observatory off the west coast of Vancouver Island, British Columbia. The network extends across the Juan de Fuca plate and gathers live data from a diverse collection of instruments deployed in the ocean.</string>
+	<string name="msg_map_note">(Click to enlarge)</string>
+
+	<!--  Timestamp format -->
+	<string name="format_iso8601_timestamp">yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'</string>
+    <string name="format_display_timestamp">yyyy-MM-dd HH:mm:ss</string>
+</resources>

@@ -71,7 +71,6 @@ public class MapTabActivity extends Activity {
 		ImageView mapView = (ImageView) findViewById(R.id.map_id);
 		mapView.setOnClickListener(new OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(MapTabActivity.this,	MapViewActivity.class);
 				MapTabActivity.this.startActivity(i);

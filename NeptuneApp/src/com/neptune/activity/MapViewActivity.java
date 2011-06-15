@@ -13,7 +13,7 @@ public class MapViewActivity extends Activity {
 	private final static String PAGE = "/MapView";
 	private GoogleAnalyticsTracker tracker;
 	
-	private final static String MAP_PATH = "file:///android_res/drawable/map.png";
+	private final static String MAP_PATH = "file:///android_asset/map.jpg";
 	
 	private WebView mWebView;
 	/**
